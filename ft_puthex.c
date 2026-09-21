@@ -6,25 +6,32 @@
 /*   By: amigdadi <amigdadi@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 22:15:00 by amigdadi          #+#    #+#             */
-/*   Updated: 2025/12/20 22:15:00 by amigdadi         ###   ########.fr       */
+/*   Updated: 2025/12/21 13:00:29 by amigdadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "ft_printf.h"
 
-static int puthex_rec(unsigned int n, const char *base)
+int	ft_puthex(unsigned int n, char specifier)
 {
-    int count = 0;
-    if (n >= 16)
-        count += puthex_rec(n / 16, base);
-    {
-        char c = base[n % 16];
-        count += write(1, &c, 1);
-    }
-    return count;
-}
+	char	*base;
+	char	buf[9];
+	int		written;
+	int		i;
 
-int ft_puthex(unsigned int n, char specifier)
-{
-    const char *base = (specifier == 'X') ? "0123456789ABCDEF" : "0123456789abcdef";
-    return puthex_rec(n, base);
+	if (specifier == 'X')
+		base = "0123456789ABCDEF";
+	else
+		base = "0123456789abcdef";
+	i = 8;
+	if (n == 0)
+		return (write(1, "0", 1));
+	buf[i] = '\0';
+	while (n != 0)
+	{
+		buf[--i] = base[n % 16];
+		n /= 16;
+	}
+	written = write(1, &buf[i], 8 - i);
+	return (written);
 }

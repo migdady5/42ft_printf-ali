@@ -7,13 +7,10 @@ OBJS = $(SRCS:.c=.o)
 
 .PHONY: all clean fclean re
 
-all: $(NAME) test
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
-
-test: $(NAME)
-	$(CC) $(CFLAGS) -o test mainTest.c $(NAME)
 
 %.o: %.c ft_printf.h
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -22,6 +19,6 @@ clean:
 	rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME) test
+	rm -f $(NAME)
 
 re: fclean all

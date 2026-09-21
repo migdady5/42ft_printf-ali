@@ -6,11 +6,12 @@
 /*   By: amigdadi <amigdadi@learner.42.tech>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 21:39:33 by amigdadi          #+#    #+#             */
-/*   Updated: 2025/12/20 21:39:33 by amigdadi         ###   ########.fr       */
+/*   Updated: 2025/12/21 13:06:30 by amigdadi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
-int ft_putchar(char c)
+
+int	ft_putchar(char c)
 {
-    return write(1, &c, 1);
+	return (write(1, &c, 1));
 }
